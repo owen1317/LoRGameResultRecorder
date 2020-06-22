@@ -18,16 +18,20 @@ import no.stelar7.api.r4j.pojo.lor.offline.game.LoRGameResult;
  */
 public class App 
 {
-public static void main(String[] args) throws InterruptedException {
+public static void main(String[] args) {
 		
 		//Create a file to write result everytime this program start.
-		File file = new File(DateUtil.convertLong2Str(System.currentTimeMillis(), "yyyy-MM-dd") + " log");
+		File file = new File(DateUtil.convertLong2Str(System.currentTimeMillis(), "yyyy-MM-dd") +"__" +System.currentTimeMillis() + " log");
 		BufferedWriter fw = null;
 		FileOutputStream fis = null;
 		try {
 			fis = new FileOutputStream(file);
-			 
+			System.out.println("Press any key to proceed!");
+			System.in.read();
 		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
@@ -71,7 +75,6 @@ public static void main(String[] args) throws InterruptedException {
 //				}
 			}
 			
-			Thread.sleep(5000);
         }
 		
 	}
