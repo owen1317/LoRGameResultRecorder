@@ -18,7 +18,7 @@ import no.stelar7.api.r4j.pojo.lor.offline.game.LoRGameResult;
  */
 public class App 
 {
-public static void main(String[] args) {
+public static void main(String[] args) throws InterruptedException {
 		
 		//Create a file to write result everytime this program start.
 		File file = new File(DateUtil.convertLong2Str(System.currentTimeMillis(), "yyyy-MM-dd") + " log");
@@ -38,7 +38,7 @@ public static void main(String[] args) {
 			LoRDeck deck = LoRClientAPI.getActiveDeck();
 			LoRGameResult result = LoRClientAPI.getLastGameResult();
 			
-			if(Arrays.stream(recoredGameIdList).anyMatch(result.getGameId()::equals)) {
+			if(Arrays.stream(recoredGameIdList).anyMatch(result.getGameId()::equals) || result.getGameId().equals("-1")) {
 				continue;
 			}
 			
@@ -71,6 +71,7 @@ public static void main(String[] args) {
 //				}
 			}
 			
+			Thread.sleep(5000);
         }
 		
 	}
